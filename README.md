@@ -134,3 +134,6 @@ void waitForCompletion() async {
   print('Completed');
 }
 ```
+
+
+TODO: https://mobx.netlify.app/examples/counter
