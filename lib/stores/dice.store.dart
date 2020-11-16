@@ -22,7 +22,7 @@ abstract class _DiceCounter with Store {
   //int get total => left + right;
 
   @action
-  roll() {
+  void roll() {
     left = _randomDiceValue();
     right = _randomDiceValue();
   }

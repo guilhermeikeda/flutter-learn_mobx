@@ -49,7 +49,7 @@ mixin _$DiceCounter on _DiceCounter, Store {
   final _$_DiceCounterActionController = ActionController(name: '_DiceCounter');
 
   @override
-  dynamic roll() {
+  void roll() {
     final _$actionInfo =
         _$_DiceCounterActionController.startAction(name: '_DiceCounter.roll');
     try {

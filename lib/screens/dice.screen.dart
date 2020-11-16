@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:learn_mobx/components/dice.component.dart';
 import 'package:learn_mobx/stores/dice.store.dart';
 import 'package:provider/provider.dart';
 
@@ -41,19 +42,17 @@ class DiceView extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: FlatButton(
-                  child: Observer(
-                      builder: (_) =>
-                          Image.asset('images/dice${diceCounter.left}.png')),
-                  onPressed: diceCounter.roll,
+                child: Observer(
+                  builder: (_) => DiceComponent(
+                    diceNumber: diceCounter.left,
+                  ),
                 ),
               ),
               Expanded(
-                child: FlatButton(
-                  child: Observer(
-                      builder: (_) =>
-                          Image.asset('images/dice${diceCounter.right}.png')),
-                  onPressed: diceCounter.roll,
+                child: Observer(
+                  builder: (_) => DiceComponent(
+                    diceNumber: diceCounter.right,
+                  ),
                 ),
               ),
             ],
