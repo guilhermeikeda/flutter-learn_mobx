@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:learn_mobx/components/dice-sum.component.dart';
 import 'package:learn_mobx/components/dice.component.dart';
 import 'package:learn_mobx/stores/dice.store.dart';
 import 'package:provider/provider.dart';
@@ -60,16 +61,7 @@ class DiceView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Observer(
-              builder: (_) => Text(
-                'Total ${diceCounter.total}',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                  fontSize: 16,
-                  fontFamily: 'Verdana',
-                ),
-              ),
-            ),
+                builder: (_) => DiceSumComponent(total: diceCounter.total)),
           )
         ],
       ),
