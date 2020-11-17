@@ -15,11 +15,7 @@ abstract class _DiceCounter with Store {
   int right = _randomDiceValue();
 
   @computed
-  int get total {
-    return left + right;
-  }
-
-  //int get total => left + right;
+  int get total => left + right;
 
   @action
   void roll() {

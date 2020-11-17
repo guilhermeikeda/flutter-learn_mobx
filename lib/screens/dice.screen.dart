@@ -5,8 +5,6 @@ import 'package:learn_mobx/components/dice.component.dart';
 import 'package:learn_mobx/stores/dice.store.dart';
 import 'package:provider/provider.dart';
 
-final counter = DiceCounter();
-
 class DiceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Provider<DiceCounter>(
