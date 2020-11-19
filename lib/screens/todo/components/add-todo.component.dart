@@ -9,8 +9,13 @@ class AddTodoComponent extends StatelessWidget {
     final controller = TextEditingController();
 
     return TextField(
+      autofocus: true,
       controller: controller,
-      decoration: InputDecoration(labelText: 'Add todo'),
+      decoration: const InputDecoration(
+        labelText: 'Add todo',
+        contentPadding: EdgeInsets.all(8),
+      ),
+      textInputAction: TextInputAction.done,
       onSubmitted: (_) {
         todoList.addTodo(_);
         controller.clear();

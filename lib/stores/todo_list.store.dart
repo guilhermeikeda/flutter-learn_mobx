@@ -8,10 +8,7 @@ class TodoList = _TodoList with _$TodoList;
 
 abstract class _TodoList with Store {
   @observable
-  ObservableList<Todo> todos = ObservableList<Todo>.of([
-    Todo('Teste 1'),
-    Todo('Teste 2'),
-  ]);
+  ObservableList<Todo> todos = ObservableList<Todo>();
 
   @observable
   VisibilityFilter filter = VisibilityFilter.all;

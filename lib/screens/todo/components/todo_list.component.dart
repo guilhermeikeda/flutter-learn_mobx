@@ -8,32 +8,31 @@ class TodoListComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     final todoList = Provider.of<TodoList>(context);
 
-    return Expanded(
-      child: Observer(
-        builder: (_) => ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
+    return Observer(
+      builder: (_) => Flexible(
+        child: ListView.builder(
           itemCount: todoList.visibleTodos.length,
           itemBuilder: (context, index) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Observer(
-                  builder: (_) => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            final todoItem = todoList.visibleTodos[index];
+
+            return Observer(
+              builder: (_) => CheckboxListTile(
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: todoItem.done,
+                  onChanged: (flag) =>
+                      todoList.updateTodoStatus(todoItem, flag),
+                  title: Row(
                     children: [
-                      Checkbox(
-                        checkColor: Colors.pinkAccent,
-                        value: todoList.visibleTodos[index].done,
-                        onChanged: (_) => todoList.updateTodoStatus(
-                            todoList.visibleTodos[index], _),
+                      Expanded(
+                        child: Text(todoItem.description,
+                            overflow: TextOverflow.ellipsis),
                       ),
-                      Text(todoList.visibleTodos[index].description)
+                      IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () => todoList.removeTodo(todoItem),
+                      ),
                     ],
-                  ),
-                ),
-                Icon(Icons.delete)
-              ],
+                  )),
             );
           },
         ),
