@@ -9,6 +9,63 @@ part of 'todo_list.store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TodoList on _TodoList, Store {
+  Computed<ObservableList<Todo>> _$pendingTodosComputed;
+
+  @override
+  ObservableList<Todo> get pendingTodos => (_$pendingTodosComputed ??=
+          Computed<ObservableList<Todo>>(() => super.pendingTodos,
+              name: '_TodoList.pendingTodos'))
+      .value;
+  Computed<ObservableList<Todo>> _$completedTodosComputed;
+
+  @override
+  ObservableList<Todo> get completedTodos => (_$completedTodosComputed ??=
+          Computed<ObservableList<Todo>>(() => super.completedTodos,
+              name: '_TodoList.completedTodos'))
+      .value;
+  Computed<bool> _$hasCompletedTodosComputed;
+
+  @override
+  bool get hasCompletedTodos => (_$hasCompletedTodosComputed ??= Computed<bool>(
+          () => super.hasCompletedTodos,
+          name: '_TodoList.hasCompletedTodos'))
+      .value;
+  Computed<bool> _$hasPendingTodosComputed;
+
+  @override
+  bool get hasPendingTodos =>
+      (_$hasPendingTodosComputed ??= Computed<bool>(() => super.hasPendingTodos,
+              name: '_TodoList.hasPendingTodos'))
+          .value;
+  Computed<bool> _$canRemoveAllCompletedComputed;
+
+  @override
+  bool get canRemoveAllCompleted => (_$canRemoveAllCompletedComputed ??=
+          Computed<bool>(() => super.canRemoveAllCompleted,
+              name: '_TodoList.canRemoveAllCompleted'))
+      .value;
+  Computed<bool> _$canMarkAllCompletedComputed;
+
+  @override
+  bool get canMarkAllCompleted => (_$canMarkAllCompletedComputed ??=
+          Computed<bool>(() => super.canMarkAllCompleted,
+              name: '_TodoList.canMarkAllCompleted'))
+      .value;
+  Computed<String> _$itemDescriptionComputed;
+
+  @override
+  String get itemDescription => (_$itemDescriptionComputed ??= Computed<String>(
+          () => super.itemDescription,
+          name: '_TodoList.itemDescription'))
+      .value;
+  Computed<ObservableList<Todo>> _$visibleTodosComputed;
+
+  @override
+  ObservableList<Todo> get visibleTodos => (_$visibleTodosComputed ??=
+          Computed<ObservableList<Todo>>(() => super.visibleTodos,
+              name: '_TodoList.visibleTodos'))
+      .value;
+
   final _$todosAtom = Atom(name: '_TodoList.todos');
 
   @override
@@ -39,11 +96,87 @@ mixin _$TodoList on _TodoList, Store {
     });
   }
 
+  final _$_TodoListActionController = ActionController(name: '_TodoList');
+
+  @override
+  void addTodo(String description) {
+    final _$actionInfo =
+        _$_TodoListActionController.startAction(name: '_TodoList.addTodo');
+    try {
+      return super.addTodo(description);
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeFilter(VisibilityFilter filter) {
+    final _$actionInfo =
+        _$_TodoListActionController.startAction(name: '_TodoList.changeFilter');
+    try {
+      return super.changeFilter(filter);
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeTodo(Todo todo) {
+    final _$actionInfo =
+        _$_TodoListActionController.startAction(name: '_TodoList.removeTodo');
+    try {
+      return super.removeTodo(todo);
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void markAllCompleted() {
+    final _$actionInfo = _$_TodoListActionController.startAction(
+        name: '_TodoList.markAllCompleted');
+    try {
+      return super.markAllCompleted();
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeCompleted() {
+    final _$actionInfo = _$_TodoListActionController.startAction(
+        name: '_TodoList.removeCompleted');
+    try {
+      return super.removeCompleted();
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateTodoStatus(Todo selectedTodo, bool done) {
+    final _$actionInfo = _$_TodoListActionController.startAction(
+        name: '_TodoList.updateTodoStatus');
+    try {
+      return super.updateTodoStatus(selectedTodo, done);
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 todos: ${todos},
-filter: ${filter}
+filter: ${filter},
+pendingTodos: ${pendingTodos},
+completedTodos: ${completedTodos},
+hasCompletedTodos: ${hasCompletedTodos},
+hasPendingTodos: ${hasPendingTodos},
+canRemoveAllCompleted: ${canRemoveAllCompleted},
+canMarkAllCompleted: ${canMarkAllCompleted},
+itemDescription: ${itemDescription},
+visibleTodos: ${visibleTodos}
     ''';
   }
 }
